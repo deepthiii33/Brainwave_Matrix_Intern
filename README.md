@@ -45,11 +45,12 @@ To install the required libraries, run:
 1. Download or Clone the Project
 
 2. Run the Tool
-Run the script using: ``` python Phishing_scanner.py ```
+Run the script using:
+``` python Phishing_scanner.py ```
 
-3. Enter your URLs (comma-separated), and the tool will analyze each one and give you a result
+4. Enter your URLs (comma-separated), and the tool will analyze each one and give you a result
 
-4. Example Inputs
+5. Example Inputs
    
    ![](https://github.com/deepthiii33/Brainwave_Matrix_Intern/blob/main/Sample.png)
 
