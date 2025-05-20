@@ -46,7 +46,10 @@ To install the required libraries, run:
 
 2. Run the Tool
 Run the script using:
-``` python Phishing_scanner.py ```
+
+```bash
+ python Phishing_scanner.py
+```
 
 4. Enter your URLs (comma-separated), and the tool will analyze each one and give you a result
 
