@@ -2,14 +2,14 @@
 
 ## 🛡️ Phishing Detection Tool — Internship Task 1
 
-Hi! I'm Deepthi 👋 — and this tool was built as part of my internship at **Brainwave Matrix Solutions**. The task was to build a **Phishing Link Scanner** using Python that can analyze URLs for signs of phishing and help detect unsafe links.
+Hi, I’m Deepthi 👋 — and this project was built as part of my internship at Brainwave Matrix Solutions. The task was to develop a Python tool that helps detect phishing links by scanning and analyzing URLs for suspicious patterns.
 
 ---
 ### 🔍 What This Tool Can Do
 
 This Python-based tool checks if a given URL is suspicious or not. It looks for multiple red flags commonly used in phishing attempts.
 
-### ✅ Features:
+### ✅ Key Features:
 - Detects **URL shorteners** like `bit.ly`, `tinyurl.com`, etc.
 - Flags links that use an **IP address** instead of a proper domain
 - Warns about URLs with **too many digits**
@@ -22,7 +22,7 @@ This Python-based tool checks if a given URL is suspicious or not. It looks for 
 
 ### 🧠 How It Works
 
-The tool parses the structure of each URL and applies logic-based filters. It combines pattern matching and fuzzy string comparison to flag potentially harmful links.
+The tool breaks down and inspects each URL, using a mix of pattern detection and fuzzy string matching to identify risky elements. If any red flags are found, it highlights them clearly for the user.
 
 ---
 
@@ -39,13 +39,10 @@ To install the required libraries, run:
    pip install fuzzywuzzy 
 ```
 ---
-🚀 Getting Started
-1. Download or Clone the Project
-Option 1: Click the green Code button on this page and download the ZIP file. Then extract it on your system.
 
-Option 2: Use Git :
-- ```git clone https://github.com/deepthiii33/Brainwave_Matrix_Intern.git```
-- ```cd Brainwave_Matrix_Intern```
+### 🚀 How to Use
+
+1. Download or Clone the Project
 
 2. Run the Tool
 Run the script using: ``` python Phishing_scanner.py ```
@@ -60,7 +57,7 @@ Run the script using: ``` python Phishing_scanner.py ```
 --------
 
 > This script is built for educational purposes as part of an internship.  
-> While it detects many phishing tactics, no tool is 100% accurate — always stay cautious online.
+> While it does a good job catching many common phishing signs, it may not always be accurate. Always stay cautious and double-check links — no automated tool is perfect.
 
    
    
