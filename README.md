@@ -5,8 +5,7 @@
 Hi! I'm Deepthi 👋 — and this tool was built as part of my internship at **Brainwave Matrix Solutions**. The task was to build a **Phishing Link Scanner** using Python that can analyze URLs for signs of phishing and help detect unsafe links.
 
 ---
-
-## 🔍 What This Tool Can Do
+### 🔍 What This Tool Can Do
 
 This Python-based tool checks if a given URL is suspicious or not. It looks for multiple red flags commonly used in phishing attempts.
 
@@ -17,29 +16,27 @@ This Python-based tool checks if a given URL is suspicious or not. It looks for 
 - Checks for the presence of **"@" symbol** (often used to trick users)
 - Verifies if the URL is using **HTTPS**
 - Uses **fuzzy matching** to detect fake versions of real brand domains (like `go0gle.com`)
-- Performs **WHOIS lookup** to check if the domain is registered
 - Allows scanning of **multiple URLs at once**
 
 ---
 
-## 🧠 How It Works
+### 🧠 How It Works
 
-The tool parses the structure of each URL and applies logic-based filters. It combines pattern matching, WHOIS data, and fuzzy string comparison to flag potentially harmful links.
+The tool parses the structure of each URL and applies logic-based filters. It combines pattern matching and fuzzy string comparison to flag potentially harmful links.
 
 ---
 
-## 🔧 What You’ll Need
+### 🔧 What You’ll Need
 
 - **Python** 3.8 or higher installed on your system
 - Python libraries:
   - `fuzzywuzzy`
-  - `python-whois`
   - Standard libraries: `re`, `urllib.parse`
 
 To install the required libraries, run:
 
 ```bash
-   pip install fuzzywuzzy python-whois
+   pip install fuzzywuzzy 
 ```
 ---
 🚀 Getting Started
@@ -54,7 +51,18 @@ Option 2: Use Git :
 Run the script using: ``` python Phishing_scanner.py ```
 
 3. Enter your URLs (comma-separated), and the tool will analyze each one and give you a result
-4. 
+
+4. Example Inputs
+   
+   ![](https://github.com/deepthiii33/Brainwave_Matrix_Intern/blob/main/Sample.png)
+
+📌 **Notes**  
+--------
+
+> This script is built for educational purposes as part of an internship.  
+> While it detects many phishing tactics, no tool is 100% accurate — always stay cautious online.
+
+   
    
 
 
