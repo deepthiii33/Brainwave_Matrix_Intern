@@ -11,13 +11,33 @@ known_brands = [
 ]
 
 # Common suspicious words in phishing links
-suspicious_keywords = ['support', 'service', 'login', 'account', 'verify', 'update', 'secure', 'confirm', 'free', 'password']
+suspicious_keywords = [
+    'support', 'service', 'login', 'account', 'verify', 'update', 'secure',
+    'confirm', 'free', 'password'
+]
 
 # Common shortened URL domains
 shorteners = [
-    'bit.ly', 'tinyurl.com', 'goo.gl', 't.co', 'ow.ly', 'rebrand.ly', 'b.link', 
+    'bit.ly', 'tinyurl.com', 'goo.gl', 't.co', 'ow.ly', 'rebrand.ly', 'b.link',
     'short.io', 'cutt.ly', 'is.gd', 'sh.st', 'adf.ly', 't2m.io', 'rb.gy', 'lnkd.in'
 ]
+
+# Validate and clean input
+def clean_url(raw_url):
+    raw_url = raw_url.strip()
+
+    if not raw_url:
+        return None
+
+    # Add https:// if missing
+    if not raw_url.startswith("http://") and not raw_url.startswith("https://"):
+        raw_url = "https://" + raw_url
+
+    # Basic structure check
+    if not re.match(r"^https?://[^\s]+\.[^\s]+", raw_url):
+        return None
+
+    return raw_url
 
 # Check if a URL is suspicious
 def is_suspicious_url(url):
@@ -26,39 +46,40 @@ def is_suspicious_url(url):
     path = parsed_url.path
     reasons = []
 
-    # 1. IP address as domain
+    # 1. Checking if IP address used as domain
     if re.match(r"^https?:\/\/(\d{1,3}\.){3}\d{1,3}", url):
         reasons.append("Uses IP address instead of domain")
 
-    # 2. Known shortener
+    # 2. Checking for Known URL shortener
     base_domain = '.'.join(domain.split('.')[-2:])
     if base_domain in shorteners:
         reasons.append("Uses a known URL shortener")
 
-    # 3. Too many digits
+    # 3. Too many digits in domain
     if sum(c.isdigit() for c in domain) > 5:
         reasons.append("Domain contains too many digits")
 
-    # 4. '@' symbol
+    # 4. Contains '@' symbol
     if '@' in url:
         reasons.append("Contains '@' symbol (can mask real domain)")
 
-    # 5. Suspicious keywords
+    # 5. Suspicious keywords in full URL
     if any(word in url.lower() for word in suspicious_keywords):
         reasons.append("Contains suspicious keyword(s)")
 
-    # 6. Does not use HTTPS
+    # 6. URL does not use HTTPS
     if not url.lower().startswith("https://"):
         reasons.append("URL does not use HTTPS")
 
-    # 7. Brand impersonation
+    # 7. Brand impersonation (fuzzy match)
     for brand in known_brands:
         score = fuzz.partial_ratio(domain.lower(), brand)
         domain_clean = domain.lower().replace("www.", "")
         if score > 80 and domain_clean != brand:
             reasons.append(f"Domain may imitate brand: '{brand}'")
             break
-    return reasons
+
+    return (len(reasons) > 0), (reasons if reasons else ["No red flags found"])
 
 # CLI interaction
 def main():
@@ -66,24 +87,26 @@ def main():
     print("Paste one or more URLs (separated by commas), and check them for suspicious signs.\n")
     urls = input("Enter URL(s): ").split(',')
 
-    for url in urls:
-        url = url.strip()
-        if not url:
+    for raw_url in urls:
+        cleaned_url = clean_url(raw_url)
+
+        if not cleaned_url:
+            print(f"\n⛔ Skipping invalid input: '{raw_url.strip()}'")
             continue
 
-        print(f"\n🔗 Scanning: {url}")
+        print(f"\n🔗 Scanning: {cleaned_url}")
         time.sleep(1)
 
-        reasons = is_suspicious_url(url)
+        is_suspicious, reasons = is_suspicious_url(cleaned_url)
 
-        if reasons:
+        if is_suspicious:
             print("⚠️ This URL looks suspicious. Here's why:")
             for reason in reasons:
                 print(f" - {reason}")
         else:
             print("✅ This URL looks safe. No red flags found.")
 
-        time.sleep(1.2)  # Pause before next scan
+        time.sleep(1.2)
 
 if __name__ == "__main__":
     main()
