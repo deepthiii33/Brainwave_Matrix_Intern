@@ -3,14 +3,14 @@ import time
 from urllib.parse import urlparse
 from fuzzywuzzy import fuzz
 
-# Known brands to compare against
+# Some known brands to compare against
 known_brands = ['google.com', 'paypal.com', 'amazon.com', 'microsoft.com', 'facebook.com','netflix.com',
                  'linkedin.com', 'instagram.com', 'youtube.com','apple.com', 'whatsapp.com', 
                  'tiktok.com', 'snapchat.com']
 
-# Common suspicious words in phishing links
-suspicious_keywords = ['support', 'service', 'login', 'account', 'verify', 'update', 'secure',
-                       'confirm', 'free', 'password']
+# Some common suspicious keywords in phishing links
+suspicious_keywords = ['support', 'service', 'login', 'account', 'verify', 'update', 'secure', 'confirm', 
+                       'free', 'password']
 
 # Common shortened URL domains
 shorteners = ['bit.ly', 'tinyurl.com', 'goo.gl', 't.co', 'rebrand.ly', 'b.link','short.io', 'cutt.ly', 'lnkd.in']
@@ -21,10 +21,6 @@ def clean_url(raw_url):
 
     if not raw_url:
         return None
-
-    # Add https:// if missing
-    if not raw_url.startswith("http://") and not raw_url.startswith("https://"):
-        raw_url = "https://" + raw_url
 
     # Basic structure checking
     if not re.match(r"^https?://[^\s]+\.[^\s]+", raw_url):
