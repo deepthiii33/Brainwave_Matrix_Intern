@@ -1,6 +1,4 @@
-# 👩‍💻 Brainwave_Matrix_Intern
-
-## 🛡️ Phishing Detection Tool — Internship Task 1
+# 🛡️ Phishing Detection Tool — Internship Task 1
 
 Hi, I’m Deepthi 👋 — and this project was built as part of my internship at Brainwave Matrix Solutions. The task was to develop a Python tool that helps detect phishing links by scanning and analyzing URLs for suspicious patterns.
 
